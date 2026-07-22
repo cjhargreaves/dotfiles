@@ -1,6 +1,8 @@
 # dotfiles
 
-## My configs for
+My configs, synced across machines. One folder per tool; `install.sh` symlinks each into place.
+
+## What's here
 
 - zsh
 - WezTerm
@@ -12,8 +14,7 @@
 ## Install
 
 ```bash
-brew install stow
-git clone git@github.com:cjhargreaves/dotfiles-public.git ~/Side/dotfiles_public
-cd ~/Side/dotfiles_public
+git clone git@github.com:cjhargreaves/dotfiles-public.git ~/Side/dotfiles
+cd ~/Side/dotfiles
 ./install.sh
 ```

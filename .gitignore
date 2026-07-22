@@ -15,4 +15,4 @@ __pycache__/
 *.pyc
 
 # Neovim generated build state
-nvim/.config/nvim/plugin/packer_compiled.lua
+nvim/plugin/packer_compiled.lua

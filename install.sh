@@ -1,36 +1,50 @@
 #!/usr/bin/env bash
-# Dotfiles installer — symlinks each Stow package into $HOME.
+# Dotfiles installer — symlinks each config into place.
 #
 # Usage:
-#   ./install.sh            # stow all packages
-#   ./install.sh wezterm    # stow only specific packages
+#   ./install.sh            # link everything
+#   ./install.sh nvim zsh   # link only specific packages
 #   ./install.sh -n         # dry run (show what would happen)
-#
-# Each top-level directory here is a "Stow package" whose contents mirror
-# your home directory. `stow wezterm` links wezterm/.config/wezterm ->
-# ~/.config/wezterm, and so on.
 
 set -euo pipefail
 cd "$(dirname "$0")"
+ROOT="$(pwd)"
 
-# All stowable packages (directories, minus git/meta)
-PACKAGES=(claude wezterm tmux vim zsh nvim)
-
-if ! command -v stow >/dev/null 2>&1; then
-  echo "GNU Stow is not installed. Install it with: brew install stow"
-  exit 1
-fi
+# "package:source -> dest" map. source is relative to ROOT.
+LINKS=(
+  "zsh:zsh/.zshrc:$HOME/.zshrc"
+  "vim:vim/.vimrc:$HOME/.vimrc"
+  "tmux:tmux/.tmux.conf:$HOME/.tmux.conf"
+  "wezterm:wezterm:$HOME/.config/wezterm"
+  "nvim:nvim:$HOME/.config/nvim"
+  "claude:claude/skills:$HOME/.claude/skills"
+)
 
 DRY=""
-TARGETS=()
+TARGETS=""
 for arg in "$@"; do
-  if [[ "$arg" == "-n" ]]; then DRY="-n -v"; else TARGETS+=("$arg"); fi
+  if [ "$arg" = "-n" ]; then DRY="1"; else TARGETS="$TARGETS $arg"; fi
 done
-[[ ${#TARGETS[@]} -eq 0 ]] && TARGETS=("${PACKAGES[@]}")
 
-for pkg in "${TARGETS[@]}"; do
-  echo "==> stowing $pkg"
-  stow $DRY --target="$HOME" "$pkg"
+for entry in "${LINKS[@]}"; do
+  pkg="${entry%%:*}"
+  rest="${entry#*:}"
+  src="$ROOT/${rest%%:*}"
+  dest="${rest#*:}"
+
+  # if TARGETS given, skip packages not listed
+  if [ -n "$TARGETS" ]; then
+    case " $TARGETS " in *" $pkg "*) ;; *) continue ;; esac
+  fi
+
+  if [ -n "$DRY" ]; then
+    echo "would link: $dest -> $src"
+    continue
+  fi
+  mkdir -p "$(dirname "$dest")"
+  rm -rf "$dest"
+  ln -s "$src" "$dest"
+  echo "linked: $dest -> $src"
 done
 
 echo "Done. Restart your terminal (or run: tmux source ~/.tmux.conf)."
