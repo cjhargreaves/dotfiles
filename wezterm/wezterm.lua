@@ -3,6 +3,8 @@ local act = wezterm.action
 local config = wezterm.config_builder()
 
 config.max_fps = 120
+config.front_end = "WebGpu"
+config.webgpu_power_preference = "HighPerformance"
 config.font = wezterm.font("JetBrainsMonoNL Nerd Font Mono", { weight = "DemiBold" })
 config.font_size = 16.0
 config.freetype_load_target = "Light"
@@ -25,9 +27,12 @@ config.colors = {
 config.inactive_pane_hsb = { saturation = 0.5, brightness = 0.3 }
 
 config.keys = {
+  { key = "Enter", mods = "SHIFT", action = act.SendString("\x1b\r") },
   { key = "d", mods = "CMD", action = act.SplitHorizontal({ domain = "CurrentPaneDomain" }) },
   { key = "d", mods = "CMD|SHIFT", action = act.SplitVertical({ domain = "CurrentPaneDomain" }) },
   { key = "w", mods = "CMD", action = act.CloseCurrentPane({ confirm = true }) },
+  { key = "Enter", mods = "CMD|SHIFT", action = act.TogglePaneZoomState },
+  { key = "c", mods = "CMD|SHIFT", action = act.ActivateCopyMode },
   { key = "[", mods = "CMD", action = act.ActivatePaneDirection("Prev") },
   { key = "]", mods = "CMD", action = act.ActivatePaneDirection("Next") },
   { key = "LeftArrow", mods = "CMD|OPT", action = act.ActivatePaneDirection("Left") },

@@ -19,3 +19,33 @@ alias python3='/opt/homebrew/bin/python3'
 alias pip3='/opt/homebrew/bin/pip3'
 
 [[ -f ~/.zshrc.local ]] && source ~/.zshrc.local
+
+# DevSpace shortcuts (ds-cjhargre-dev-03np8znn)
+alias cloud='ssh ds-cjhargre-dev-03np8znn'
+cloudcp() {
+  rsync -avz \
+    --exclude 'tmp/' \
+    --exclude 'build/' \
+    --exclude 'env/' \
+    --exclude '.gradle/' \
+    --exclude 'node_modules/' \
+    --exclude '.git/objects/pack/' \
+    "$1" ds-cjhargre-dev-03np8znn:~/workspace/
+}
+
+# Rename the current wezterm tab.
+# Usage: term-setname "my tab"
+term-setname() { wezterm cli set-tab-title "$*"; }
+
+# SSM into the vLLM EC2 instance (vllm-serv2)
+alias ssh-vllm='aws ssm start-session --target i-07bd5958a2c165f97 --region us-west-2'
+
+autoload -Uz add-zsh-hook
+_disable_mouse() { printf '\e[?1000l\e[?1002l\e[?1003l\e[?1006l' }
+add-zsh-hook precmd _disable_mouse
+
+alias ds-start="devspaces start ds-cjhargre-dev-03np8znn"
+
+# brazil stuff
+alias brc='brazil-recursive-cmd'
+alias bbb='brc --allPackages brazil-build'
