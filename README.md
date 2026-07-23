@@ -1,9 +1,5 @@
 # dotfiles
 
-My configs, synced across machines. One folder per tool; `install.sh` symlinks each into place.
-
-## What's here
-
 - zsh
 - WezTerm
 - tmux
