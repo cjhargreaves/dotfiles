@@ -21,7 +21,7 @@ alias pip3='/opt/homebrew/bin/pip3'
 [[ -f ~/.zshrc.local ]] && source ~/.zshrc.local
 
 # DevSpace shortcuts (ds-cjhargre-dev-03np8znn)
-alias cloud='ssh ds-cjhargre-dev-03np8znn'
+alias cloud='ssh ds-cjhargre-dev2-zmeob4qj'
 cloudcp() {
   rsync -avz \
     --exclude 'tmp/' \
@@ -30,12 +30,13 @@ cloudcp() {
     --exclude '.gradle/' \
     --exclude 'node_modules/' \
     --exclude '.git/objects/pack/' \
-    "$1" ds-cjhargre-dev-03np8znn:~/workspace/
+    "$1" ds-cjhargre-dev2-zmeob4qj:~/workspace/
 }
 
 # Rename the current wezterm tab.
 # Usage: term-setname "my tab"
 term-setname() { wezterm cli set-tab-title "$*"; }
+alias tt=term-setname
 
 # SSM into the vLLM EC2 instance (vllm-serv2)
 alias ssh-vllm='aws ssm start-session --target i-07bd5958a2c165f97 --region us-west-2'
@@ -49,3 +50,6 @@ alias ds-start="devspaces start ds-cjhargre-dev-03np8znn"
 # brazil stuff
 alias brc='brazil-recursive-cmd'
 alias bbb='brc --allPackages brazil-build'
+
+# Kiro agent with builder-mcp doc/code tools + Amazon Presentation System MCP
+alias kiro-present='kiro-cli chat --agent builder-presentation'

@@ -42,6 +42,8 @@ config.keys = {
   { key = "t", mods = "CMD", action = act.SpawnTab("CurrentPaneDomain") },
   { key = "LeftArrow", mods = "CMD", action = act.ActivateTabRelative(-1) },
   { key = "RightArrow", mods = "CMD", action = act.ActivateTabRelative(1) },
+  { key = "LeftArrow", mods = "CMD|SHIFT", action = act.MoveTabRelative(-1) },
+  { key = "RightArrow", mods = "CMD|SHIFT", action = act.MoveTabRelative(1) },
   { key = "1", mods = "CMD", action = act.ActivateTab(0) },
   { key = "2", mods = "CMD", action = act.ActivateTab(1) },
   { key = "3", mods = "CMD", action = act.ActivateTab(2) },
