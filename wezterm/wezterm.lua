@@ -15,6 +15,9 @@ config.scrollback_lines = 10000
 config.audible_bell = "Disabled"
 config.send_composed_key_when_left_alt_is_pressed = false
 
+config.skip_close_confirmation_for_processes_named = {}
+config.window_close_confirmation = "AlwaysPrompt"
+
 config.colors = {
   background = "#000000",
   foreground = "#ffffff",

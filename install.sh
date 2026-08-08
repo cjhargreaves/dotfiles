@@ -18,6 +18,8 @@ LINKS=(
   "wezterm:wezterm:$HOME/.config/wezterm"
   "nvim:nvim:$HOME/.config/nvim"
   "claude:claude/skills:$HOME/.claude/skills"
+  "claude:claude/settings.json:$HOME/.claude/settings.json"
+  "claude:claude/CLAUDE.md:$HOME/.claude/CLAUDE.md"
 )
 
 DRY=""
