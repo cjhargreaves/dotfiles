@@ -4,8 +4,8 @@
 - WezTerm
 - tmux
 - vim
-- Neovim (onedark, telescope, treesitter, nvim-tree, lualine, LSP, nvim-cmp)
-- Claude skills
+- nvim
+- claude
 
 ## Install
 

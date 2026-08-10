@@ -1,19 +1,15 @@
 {
-  "model": "opus[1m]",
-  "enabledPlugins": {
-    "clangd-lsp@claude-plugins-official": true,
-    "frontend-design@claude-plugins-official": true,
-    "i-have-adhd@i-have-adhd": true,
-    "rust-analyzer-lsp@claude-plugins-official": true
-  },
-  "extraKnownMarketplaces": {
-    "i-have-adhd": {
-      "source": {
-        "source": "github",
-        "repo": "ayghri/i-have-adhd"
-      }
-    }
-  },
+  "model": "sonnet",
   "effortLevel": "medium",
-  "promptSuggestionEnabled": false
+
+  "permissions": {
+    "defaultMode": "default"
+  },
+
+  "includeCoAuthoredBy": false,
+  "promptSuggestionEnabled": false,
+
+  "skillOverrides": {
+    "ui-ux-pro-max": "off"
+  }
 }
