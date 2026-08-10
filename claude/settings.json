@@ -1,15 +1,16 @@
 {
-  "model": "sonnet",
-  "effortLevel": "medium",
-
+  "includeCoAuthoredBy": false,
   "permissions": {
     "defaultMode": "default"
   },
-
-  "includeCoAuthoredBy": false,
-  "promptSuggestionEnabled": false,
-
+  "model": "sonnet",
   "skillOverrides": {
     "ui-ux-pro-max": "off"
-  }
+  },
+  "effortLevel": "medium",
+  "promptSuggestionEnabled": false,
+  "awaySummaryEnabled": false,
+  "theme": "dark",
+  "editorMode": "vim",
+  "autoCompactEnabled": false
 }
