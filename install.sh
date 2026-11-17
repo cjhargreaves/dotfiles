@@ -17,10 +17,20 @@ LINKS=(
   "tmux:tmux/.tmux.conf:$HOME/.tmux.conf"
   "wezterm:wezterm:$HOME/.config/wezterm"
   "nvim:nvim:$HOME/.config/nvim"
-  "claude:claude/skills:$HOME/.claude/skills"
-  "claude:claude/settings.json:$HOME/.claude/settings.json"
-  "claude:claude/CLAUDE.md:$HOME/.claude/CLAUDE.md"
 )
+
+# OS-only packages
+case "$(uname -s)" in
+  Linux)
+    LINKS+=(
+      "hypr:hypr:$HOME/.config/hypr"
+    )
+    ;;
+  Darwin)
+    LINKS+=(
+    )
+    ;;
+esac
 
 DRY=""
 TARGETS=""

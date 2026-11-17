@@ -1,0 +1,19 @@
+local programs = require("programs")
+
+-------------------
+---- AUTOSTART ----
+-------------------
+
+-- See https://wiki.hypr.land/Configuring/Basics/Autostart/
+
+-- Autostart necessary processes (like notifications daemons, status bars, etc.)
+-- Or execute your favorite apps at launch like this:
+--
+hl.on("hyprland.start", function () 
+   hl.exec_cmd(programs.terminal)
+   hl.exec_cmd(programs.notify)
+   hl.exec_cmd(programs.browser)
+   hl.exec_cmd(programs.wallpaper)
+   h1.exec_cmd(programs.waybar)
+   
+   end)
